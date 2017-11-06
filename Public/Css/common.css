@@ -1,0 +1,257 @@
+body{
+	font: normal 90% Arial, 'Microsoft YaHei',Arial,'微软雅黑',SimSun,'宋体';
+}
+.zs_tab{ margin-top:10px; border-top:1px solid #cbcbcb; display:inline-block; width:100%; background:#fff; float:left;}
+.zs_tab ul{ margin:0; padding:0;}
+.zs_tab ul li{ float:left; width:25%; height:38px; line-height:38px; border-bottom:1px solid #cbcbcb; position:relative;}
+.zs_tab ul li a{ border-left:1px solid #cbcbcb; display:block; text-align:center; color:#757575; font-size:15px;}
+.zs_tab ul li:active{ background:#e7e7e7;}
+.zs_tab ul li.current{ border-bottom:1px solid #fff;}
+.zs_tab ul li.current:active{ background:#fff;}
+.zs_tab_div{
+	font-size:14px; color:#808080; background:#fff; display:inline-block; width:100%; float:left; min-height:738px;
+	background: url(../Images/App/bg.jpg) center no-repeat;
+}
+em{font-style:normal;}
+i{font-style:normal;}
+
+
+.swiper-container {
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	-webkit-backface-visibility:hidden;
+	-moz-backface-visibility:hidden;
+	-ms-backface-visibility:hidden;
+	-o-backface-visibility:hidden;
+	backface-visibility:hidden;
+	Fix of Webkit flickering;
+	z-index: 1;
+}
+.swiper-wrapper {
+	position:relative;
+	width:100%;
+	-webkit-transition-property:-webkit-transform, left, top;
+	-webkit-transition-duration:0s;
+	-webkit-transform:translate3d(0px,0,0);
+	-webkit-transition-timing-function:ease;
+	
+	-moz-transition-property:-moz-transform, left, top;
+	-moz-transition-duration:0s;
+	-moz-transform:translate3d(0px,0,0);
+	-moz-transition-timing-function:ease;
+	
+	-o-transition-property:-o-transform, left, top;
+	-o-transition-duration:0s;
+	-o-transform:translate3d(0px,0,0);
+	-o-transition-timing-function:ease;
+	-o-transform:translate(0px,0px);
+	
+	-ms-transition-property:-ms-transform, left, top;
+	-ms-transition-duration:0s;
+	-ms-transform:translate3d(0px,0,0);
+	-ms-transition-timing-function:ease;
+	
+	transition-property:transform, left, top;
+	transition-duration:0s;
+	transform:translate3d(0px,0,0);
+	transition-timing-function:ease;
+}
+.swiper-free-mode > .swiper-wrapper {
+	/*-webkit-transition-timing-function: linear;
+	-moz-transition-timing-function: linear;
+	-ms-transition-timing-function:linear;
+	-o-transition-timing-function: linear;
+	transition-timing-function: linear;*/
+	margin: 0 auto;
+}
+.swiper-slide {
+	float: left;
+}
+
+/* IE10 Windows Phone 8 Fixes */
+.swiper-wp8-horizontal {
+	-ms-touch-action: pan-y;
+}
+.swiper-wp8-vertical {
+	-ms-touch-action: pan-x;
+}
+
+
+.tabs {
+  width: 100%;
+  margin: 0 auto;
+}
+.tabs a {
+	border-left:1px solid #ebebeb; 
+	display:block; 
+	text-align:center; 
+	color:#757575; 
+	font-size:15px;
+  
+	box-sizing:border-box;
+  
+	float: left;
+  
+	width: 25%;
+  color: #000000;
+  font-weight:bold;
+  text-align: center;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  background: #f6f6f6;
+  line-height: 40px;
+
+ 
+  text-decoration: none;
+ 
+}
+.tabs a.active {
+  border-bottom: 1px solid #f6f6f6;
+}
+.swiper-container {
+ 
+  width: 100%;
+  border-top: 0;
+}
+.swiper-slide {
+
+  width: 640px;
+  background: none;
+  color: #fff;
+}
+.content-slide {
+
+}
+
+/**
+*
+*	table css
+*/
+.ui-table th ,.ui-table td{
+	text-align:center;
+	width:25%;
+	padding-left:0px;
+	padding-right:0px;
+}
+
+
+.ui-block-a h2, .ui-block-b h2{
+	margin: 0;
+    padding-top: 18px;
+    text-align: center;
+    font-weight: 400;
+    color: #454545;
+    font-size: 16px;
+}
+.ui-block-a a ,.ui-block-b a{
+	display:block;
+	width:80px;
+	height:80px;
+	text-indent:-9999em;
+	background:url(../Images/App/teamlogo-big.png) no-repeat;
+	cursor:default;
+}
+.ui-block-a ul ,.ui-block-b ul{
+	margin: 0;
+	padding:0;
+	list-style: none;
+    overflow: hidden;
+}
+.ui-block-a ul li, .ui-block-b ul li {
+    width: 72px;
+    height: 60px;
+    display: block;
+    float: left;
+    padding: 12px 10px;
+}
+.ui-block-a a.big-s76ers{	
+	background-position:0 -20px
+}
+.ui-block-a a.big-celtics{	
+	background-position:0 -100px	
+}
+.ui-block-a a.big-knicks{
+	background-position:0 -180px
+}
+.ui-block-a a.big-nets{
+	background-position:0 -260px
+}
+.ui-block-a a.big-raptors{
+	background-position:0 -338px
+}
+.ui-block-a a.big-hornets{
+	background-position:0 -420px
+}
+.ui-block-a a.big-hawks{
+	background-position:0 -500px
+}
+.ui-block-a a.big-heat{
+	background-position:0 -580px
+}
+.ui-block-a a.big-magic{
+	background-position:0 -660px
+}
+.ui-block-a a.big-wizards{
+	background-position:0 -740px
+}
+.ui-block-a a.big-bucks{
+	background-position:0 -820px
+}
+.ui-block-a a.big-bulls{
+	background-position:0 -900px
+}
+.ui-block-a a.big-cavaliers{
+	background-position:0 -980px
+}
+.ui-block-a a.big-pacers{
+	background-position:0 -1060px
+}
+.ui-block-a a.big-pistons{
+	background-position:0 -1140px
+}
+.ui-block-b a.big-clippers{
+	background-position:0 -1220px
+}
+.ui-block-b a.big-lakers{
+	background-position:0 -1300px
+}
+.ui-block-b a.big-kings{
+	background-position:0 -1380px
+}
+.ui-block-b a.big-warriors{
+	background-position:0 -1460px
+}
+.ui-block-b a.big-suns{
+	background-position:0 -1540px
+}
+.ui-block-b a.big-grizzlies{
+	background-position:0 -1620px
+}
+.ui-block-b a.big-pelicans{
+	background-position:0 -1700px
+}
+.ui-block-b a.big-mavericks{
+	background-position:0 -1780px
+}
+.ui-block-b a.big-rockets{
+	background-position:0 -1860px
+}
+.ui-block-b a.big-spurs{
+	background-position:0 -1940px
+}
+.ui-block-b a.big-jazz{
+	background-position:0 -2020px
+}
+.ui-block-b a.big-nuggets{
+	background-position:0 -2100px
+}
+.ui-block-b a.big-thunder{
+	background-position:0 -2180px
+}
+.ui-block-b a.big-timber_wolves{
+	background-position:0 -2260px
+}
+.ui-block-b a.big-trail_blazers{
+	background-position:0 -2340px
+

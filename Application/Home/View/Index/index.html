@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+	<meta name="viewport"	content="width=device-width,initial-scale=1" />
+	<link rel="stylesheet" href="<{$Think.config.Css}>jquery.mobile-1.4.2.min.css" />
+	<!-- <link rel="stylesheet" href="<{$Think.config.Css}>jquery.mobile.theme-1.4.2.min.css" /> -->
+	<script src="<{$Think.config.Js}>jquery-1.10.2.min.js"></script>
+	<script src="<{$Think.config.Js}>jqueryMobile1.4/jquery.mobile-1.4.2.min.js"></script>
+	<style>
+		.ui-fixed-hidden{
+			position: fixed;
+		}
+	</style>
+</head>
+<body>
+
+<div data-role="page" id="foo">
+	<div data-role="header">
+		<h1>header</h1>
+	</div><!-- /header-->
+
+	<div role="main" class="ui-content">
+		<p>Hello Jquery Mobile!</p>
+		<p>View internal page called <a href="#bar">bar</a></p>
+		<p>View internal page called <a href="#list">list</a></p>
+		<p>View internal page called <a href="#controlgroup">Dynamic controlgroup</a></p>
+		<p>View internal page called <a href="#datepicker">Datepicker Widget</a></p>
+		<p>View internal page called <a href="__URL__/list_demo" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open swipe list demo</a></p>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+	      <ul>
+	         <li><a href="#list">List</a></li>
+	         <li><a href="#bar">Bar</a></li>
+	      </ul>
+   		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- id = bar -->
+<div data-role="page" id="bar">
+	<div data-role="header">
+		<h1>Bar</h1>
+	</div><!-- /header -->
+	<div role="main" class="ui-content">
+		<p>I'm the second in the source order so I'm hidden when the page loads. I'm just shown if a link that references my id is beeing clicked.</p>
+		
+			<label for="slider-0">Input slider:</label>
+			<input type="range" name="slider" id="slider-0" value="25" min="0" max="100" />
+
+			<label for="a-btn">a-btn:</label>
+			<a href="#" data-role="button" data-icon="star" >Star Button</a>
+
+			<label for="a-btn">btn:</label>
+			<button class="ui-btn ui-btn-inline">Button-inline</button>
+			<button class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Button-inline</button>
+
+			<label for="input-btn">input-btn:</label>
+			<input type="button" value="input" />
+			<div class="ui-input-btn ui-btn ui-corner-all ui-shadow">
+			Enhanced value
+				<input type="button" data-enhanced="true" value="" />
+			</div>
+			<input type="button" data-inline="true" value="Input">
+			<div class="ui-input-btn ui-btn ui-btn-inline">
+	        Enhanced
+	        	<input type="button" data-enhanced="true" value="" />
+    		</div>
+
+			<label>checkbox:</label>
+			<label>
+		        <input type="checkbox" name="checkbox-0 ">Check me
+		    </label>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>Horizontal:</legend>
+		        <input type="checkbox" name="checkbox-h-2a" id="checkbox-h-2a">
+		        <label for="checkbox-h-2a">One</label>
+		        <input type="checkbox" name="checkbox-h-2b" id="checkbox-h-2b">
+		        <label for="checkbox-h-2b">Two</label>
+		        <input type="checkbox" name="checkbox-h-2c" id="checkbox-h-2c">
+		        <label for="checkbox-h-2c">Three</label>
+			</fieldset>
+			
+			<label>Radio buttons:</label>
+			<label>	
+				<input type="radio" name="radio-choice" id="radio-choice">One
+			</label>
+			<input type="radio" name="radio-choice" id="radio-choice-0b" class="custom">
+			<label for="radio-choice-0b">Two</label>
+
+			<label>collapsible:</label>
+			<button type="button" data-icon="gear" data-iconpos="right" data-mini="true" data-inline="true" id="add">Add</button>
+			<button type="button" data-icon="plus" data-iconpos="right" data-mini="true" data-inline="true" id="expand">Expand last</button>
+			<button type="button" data-icon="minus" data-iconpos="right" data-mini="true" data-inline="true" id="collapse">Collapse last</button>
+			<div data-role="collapsibleset" data-iconpos="right" id="set" data-theme="a" data-content-theme="a" data-mini="true">
+				<div data-role="collapsible" id="set1" data-collapsed="true">
+					<h3>Section 1</h3>
+					<p>I'm the collapsible content.</p>
+				</div>
+			</div>
+			<label>DataPicker:</label>
+			<input type="text" data-role="date" >
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+	      <ul>
+	         <li><a href="#foo">Foo</a></li>
+	         <li><a href="#list">List</a></li>
+	      </ul>
+   		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+
+<!-- id = list -->
+<div data-role="page" id="list" data-theme="a">
+	<div data-role="header" data-position="fixed">
+		<h1>list</h1>
+	</div><!-- /header -->
+	<div data-role="content" >
+      <ul data-role="listview" data-dividertheme="b" style="margin-top: 0;" data-filter="false">
+         <li data-role="list-divider">Royal Family</li>
+         <li><a href="#foo"><span class="ui-li-count">Reign 37 Years</span>Henry VIII</a></li>
+         <li><a href="#foo">George V</a></li>
+         <li><a href="#foo">Prince of Wales</a></li>
+         <li><a href="#foo">Elizabeth I</a></li>
+         <li><a href="#foo">Elizabeth II</a></li>
+         <li data-role="list-divider">Prime Miniseters</li>
+         <li><a href="#foo">Winston Churchill</a></li>
+         <li><a href="#foo">Tony Blare</a></li>
+         <li><a href="#foo">David Cameron</a></li>
+      </ul>
+   </div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+	      <ul>
+	         <li><a href="#foo">foo</a></li>
+	         <li><a href="#bar">Bar</a></li>
+	      </ul>
+   		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+
+<!--id = controlgroup -->
+<div data-role="page" id="controlgroup">
+	<div data-role="header">
+		<h1>controlgroup</h1>
+	</div><!-- /header-->
+
+	<form>
+		<div class="ui-body ui-body-d ui-corner-all">
+			<p>Controlgroup...</p>
+			<div data-role="controlgroup" id="my-controlgroup"></div>
+		</div>
+	</form>
+	<div class="ui-field-contain">
+	    <label for="prepend">Add item</label>
+	    <button id="prepend" data-mini="true" data-inline="true">Prepend</button>
+	    <label for="append" class="ui-hidden-accessible">Action</label>
+	    <button id="append" data-mini="true" data-inline="true">Append</button>
+	</div>
+	<form action="#" method="get">
+		<div class="ui-field-contain">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<legend>Widget type</legend>
+				<input type="radio"	name="radio-widget" id="link" value="link" checked="checked">
+				<label for="link">Link</label>
+				<input type="radio" name="radio-widget" id="select" value="select">
+				<label for="select">Select</label>
+				<input type="radio" name="radio-widget" id="checkbox" value="checkbox">
+				<label for="checkbox">Checkbox</label>
+			</fieldset>
+		</div>
+		<div class="ui-field-contain">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<legend>Action</legend>
+				<input type="radio"	name="radio-action" id="remove" value="remove" checked="checked">
+				<label for="remove">Remove</label>
+				<input type="radio" name="radio-action" id="hide" value="hide">
+				<label for="hide">hide</label>
+				<input type="radio" name="radio-action" id="width" value="width">
+				<label for="width">nothing</label>
+			</fieldset>
+		</div>
+		<div class="ui-field-contain">
+			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<legend>Switch orientation</legend>
+				<input type="radio" name="radio-orientation" id="isVertical" value="isVertical" checked="checked">
+	            <label for="isVertical">Vertical</label>
+	            <input type="radio" name="radio-orientation" id="isHorizontal" value="isHorizontal">
+	            <label for="isHorizontal">Horizontal</label>
+			</fieldset>
+		</div>
+	</form>
+	<div id="tttt">1231321312</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+	      <ul>
+	         <li><a href="#foo">foo</a></li>
+	         <li><a href="#bar">Bar</a></li>
+	      </ul>
+   		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<div data-role="page" id="datepicker">
+	<div data-role="header" data-position="fixed">
+		<h1>datepicker</h1>
+	</div><!-- /header -->
+	<div data-role="content" >
+     
+   </div><!-- /content -->
+
+</div>
+
+<script>
+
+//collapsible
+/*
+	$(document).on('pagecreate',function(e){
+		var nextId =1;
+		$("#add").click(function(){
+			nextId++;
+			var expandcontent = "<div data-role='collapsible' id='set'"+nextId+" data-collapsed='true'><h3>Section "+nextId+"</h3><p>I'm the collapsible content.</p></div>";
+			$('#set').append(expandcontent).collapsibleset('refresh');
+		});
+		$("#expand").click(function(){
+			$("#set").children(':last').collapsible('expand');
+		});
+		$("#collapse").click(function(){
+			$("#set").children(':last').collapsible('collapse');
+		});
+	});
+*/
+
+// controlgroup
+/*	
+	(function($,undefined){
+		var counter = 0;
+		$(document).bind('pagecreate',function(e){
+			$("#prepend,#append",e.target).on("click",function(){
+				counter++;
+				var widgetType = $("[name='radio-widget']:checked").attr('id'), 
+				group = $("#my-controlgroup"),
+				$el,
+				action = function(){
+					var action = $("[name='radio-action']:checked").attr('id')
+					console.log(action);
+					if( $($el[1] ).is("select") && action === 'hide'){
+						$el = $($el[1]).parents(".ui-select");
+						console.log($el);
+					}
+					console.log($el);
+					$el[action]();
+					$el['hide']();
+
+					group.controlgroup('refresh');
+				};
+				if ( widgetType === "link" ) {
+	                $el = $( "<a href='#'>Link " + counter + "</a>" ).bind( "click", action );
+	                $( "#my-controlgroup" ).controlgroup( "container" )[ $( this ).attr( "id" ) ]( $el );
+	                $el.buttonMarkup();
+	            } else if ( widgetType === "select" ) {
+	                $el = $( "<label for='widget" + counter + "'>Select " + counter + "</label><select id='widget" + counter + "'><option value='option1'>Select " + counter + "</option><option value='option2'>Select option</option></select>" );
+	                $( $el[ 1 ] ).bind( "change", action);
+	                $( "#my-controlgroup" ).controlgroup( "container" )[ $( this ).attr( "id" ) ]( $el );
+	                $( $el[ 1 ] ).selectmenu();
+	            } else {
+	                $el = $( "<label for='widget" + counter + "'>Checkbox " + counter + "</label><input type='checkbox' id='widget" + counter + "'></input>" );
+	                $( $el[ 1 ] ).bind( "change", action );
+	                $( "#my-controlgroup" ).controlgroup( "container" )[ $( this ).attr( "id" ) ]( $el );
+	                $( $el[ 1 ] ).checkboxradio();
+	            } 
+	            group.controlgroup( "refresh" );
+			});
+			$("[name='radio-orientation']").bind("change",function(){
+				$("#my-controlgroup").controlgroup("option","type",( $("#isHorizontal").is(":checked")?"horizontal":"vertical" ));
+			});
+		});
+	})(jQuery);
+	*/
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--2014-11-13    LEIGHJ-->
+<html>
+<body>
+<script src="<{$Think.config.Js}>jquery-1.10.2.min.js"></script>
+<script src="<{$Think.config.Js}>jquery.form.js"></script>
+
+
+	<form method="post" enctype="multipart/form-data" id="upload_form">
+                <div class="modal-body">
+	                    <div class="bd-box">
+	                    <div class="bd-box002">
+	                        <div class="bd-box002-r w290">
+	                            <span class="btn btn-file bg-cl-w">
+	                                <input type="file" name ="file" class="default" id="address"/>
+	                            </span>
+	                            <span class="fileupload-preview"></span>
+	                            <div id="msg"></div>
+	                        </div>	                                               
+	                    </div>                                 
+	                	</div>
+	            </div>
+	 </form>
+	 
+	 <form method="post" id="tijiao_form" >          
+	            <input type="hidden" name = "filename" id="filename" />
+                <div class="modal-footer">
+                    <button type="button" class="btn blue w100" data-loading-text="检验中..." id="upload">确定</button>
+                    <button type="button" class="btn w100">取消</button>
+                </div>
+    </form>
+<script src="__JS__/Admin/upload.js"></script>
+</body>
+</html>

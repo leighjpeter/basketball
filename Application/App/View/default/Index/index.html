@@ -1,0 +1,283 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/common.css?<?php echo C('VERSION_JSCSS')?>">
+<!-- <link rel="stylesheet" href="<{$Think.config.font}>/css/font-awesome.min.css"> -->
+<body>
+<script src="<{$Think.config.Js}>idangerous.swiper-2.1.min.js"></script><!-- 左右滑动 -->
+	<script>
+		$(document).ready(
+				function() {
+					var tabsSwiper = new Swiper('.swiper-container', {
+						speed : 500,
+						onSlideChangeStart : function() {
+							$(".tabs .active").removeClass('active')
+							$(".tabs a").eq(tabsSwiper.activeIndex).addClass(
+									'active');
+						}
+					})
+					$(".tabs a").on('touchstart mousedown', function(e) {
+						e.preventDefault()
+						$(".tabs .active").removeClass('active')
+						$(this).addClass('active')
+						tabsSwiper.swipeTo($(this).index())
+					})
+					$(".tabs a").click(function(e) {
+						e.preventDefault()
+					})
+				});
+	</script>
+	<style type="text/css">
+	#popupPanel-popup {
+	    right: 0 !important;
+	    left: auto !important;
+	}
+	#popupPanel {
+	    width: 200px;
+	    border: 1px solid #000;
+	    border-right: none;
+	    background: rgba(0,0,0,.5);
+	    margin: -1px 0;
+	}
+	#popupPanel .ui-btn {
+	    margin: 2em 15px;
+	}
+	</style>
+<div data-role="page" id="one">
+	<div data-role="header" data-theme="b">
+		<h3>BasketBall</h3>
+	</div>	
+
+	<div class="tabs">
+		<a href="#" data-role="none" class="active" style="position: relative;">Score</a>
+		<a href="#" data-role="none">Schedule</a>
+		<a href="#" data-role="none">Team</a>
+		<a href="#" data-role="none">News</a>
+	</div>
+		<div class="swiper-container" style="height: auto !important;">
+		<div class="swiper-wrapper" style="height: auto !important;">
+			<!-- Score -->
+	  		<div class="swiper-slide" style="height: auto !important;">
+				<div class="content-slide">
+					<div class="zs_tab_div" id="zs_tab2">
+						<if condition = "$todayData eq null">
+							<center style="padding-top:30px"><span>NBA 2017-18赛季拉开序幕</span></center>
+						<else />
+							<table data-role="table" id="" data-mode="" class="table-stripe">
+							    <thead>
+							      <tr>
+							        <th data-priority="1">AwayTeam</th>
+							        <th data-priority="1">Score</th>
+							        <th data-priority="1">HostTeam</th>
+							        <th data-priority="1">Status</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							    <volist name="todayData" id="vo">
+							      <tr>
+							        <td><{$vo.awayTeam}></td>
+							        <td><{$vo.awayScore}> : <{$vo.homeScore}></td>
+							        <td><{$vo.homeTeam}></td>
+							        <td>
+							        	<{$vo.statusDesc}>    <{$vo.periodClock}>
+							        </td>
+							      </tr>      
+							 	</volist>
+							 	</tbody>
+							</table>
+						</if>
+						<div class="clear"></div>							
+					</div>
+				</div>
+			</div><!-- End Score -->
+			<!-- Data -->
+	  		<div class="swiper-slide" style="height: auto !important;">
+				<div class="content-slide">
+					<div class="zs_tab_div" id="zs_tab3">
+							<if condition = "$nextdayData eq null">
+								<center style="padding-top:30px"><span>明日无赛事</span></center>
+							<else />
+								<table data-role="table" id="table-custom-2" data-mode="" class="ui-body-d ui-shadow table-stripe ui-responsive">
+								    <thead>
+								      <tr>
+								        <th data-priority="1">AwayTeam</th>
+								        <th data-priority="1">Score</th>
+								        <th data-priority="1">HomeTeam</th>
+								        <th data-priority="1">NEXT</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								    <volist name="nextdayData" id="next">
+								      <tr>
+								        <td><{$next.guestt}></td>
+								        <td><{$next.score}></td>
+								        <td><{$next.hostt}></td>
+								        <td>Next</td>
+								      </tr>      
+								 	</volist>
+								 	</tbody>
+								</table>
+							</if>
+						<div class="clear"></div>
+						
+					</div>
+				</div>
+			</div><!-- End Data -->
+			<!-- Team -->
+	  		<div class="swiper-slide" style="height: auto !important;">					
+				<div class="content-slide">
+					<div class="zs_tab_div" id="zs_tab1">
+						<div id="team" class="ui-body-d ui-content" style="padding:0px;">
+						  	<div data-role="collapsible-set" data-theme="a" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="left" style="margin:0;border-radius:0; margin-top:-1px;">
+						  		<div data-role="collapsible" data-collapsed="false">
+								    <h4>EAST</h4>
+								    <ul data-role="listview" data-inset="false">
+								        <volist name="infoEastTeam" id="vo">
+							    			<li><a href="#" data-rel="popup" class= "ui-icon-info" data-transition="slide" name="tpop"  data-position-to="window" attrwin="<{$vo.D_WIN}>" attrlos="<{$vo.D_LOS}>" attrnum="<{$i}>" attrimg="<{$vo.D_P01}>"><{$vo.D_NAME}></a></li>
+							    		</volist>
+								    </ul>
+								</div>
+						  		<div data-role="collapsible" >
+								    <h4>WEST</h4>
+								    <ul data-role="listview" data-inset="false">
+								        <volist name="infoWestTeam" id="vo">				       
+							    			<li><a href="#" data-rel="popup" class= "ui-icon-eye"data-transition="flow" name="tpop"  data-position-to="window" attrwin="<{$vo.D_WIN}>" attrlos="<{$vo.D_LOS}>" attrnum="<{$i}>" attrimg="<{$vo.D_P01}>"><{$vo.D_NAME}></a></li>		
+							    		</volist>
+								    </ul>
+								</div>				
+						  	</div>			
+						  </div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div> <!--End Team -->
+	  		<div class="swiper-slide" style="height: auto !important;">
+				<div class="content-slide">
+					<div class="zs_tab_div" id="zs_tab4">
+						<div style="padding: 30px 0px; text-align: center;">
+						你猜猜O(∩_∩)O哈哈~
+						</div>
+						<div class="clear"></div>
+						
+					</div>
+				</div>
+			</div>			
+		</div>
+		</div>		
+	<div data-role="popup" id="TeamPopup" class="photopopup" data-overlay-theme="a" data-theme="b" data-dismissible="true" >
+		<img id="timg" src="" alt="" style="width:100%">
+		<div class="ui-grid-c" style="text-align:center">
+		    <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:20px">胜场</div><span id="win"></span></div>
+		    <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:20px">负场</div><span id="los"></span></div>
+		    <div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:20px">胜率</div><span id="wrate"></span></div>
+		    <div class="ui-block-d"><div class="ui-bar ui-bar-a" style="height:20px">排名</div><span id="tnum"></span></div>
+		</div><!-- /grid-c -->
+	</div><!-- popup -->
+
+	<!--底部球队-->
+	<div  data-role="footer">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<h2>----东部球队----</h2>
+				<ul>
+		            <li>
+		                <a target="_blank" class="big-s76ers" href="">76人</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-celtics" href="">凯尔特人</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-knicks" href="">尼克斯</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-nets" href="">篮网</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-raptors" href="">猛龙</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-hornets" href="">黄蜂</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-hawks" href="">老鹰</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-heat" href="">热火</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-magic" href="">魔术</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-wizards" href="">奇才</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-bucks" href="">雄鹿</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-bulls" href="">公牛</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-cavaliers" href="">骑士</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-pacers" href="">步行者</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-pistons" href="">活塞</a>
+		            </li>
+        		</ul>
+			</div>
+			<div class="ui-block-b">
+				<h2>----西部球队----</h2>
+				<ul>
+		            <li>
+		                <a target="_blank" class="big-clippers" href="">快船</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-lakers" href="">湖人</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-kings" href="">国王</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-warriors" href="">勇士</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-suns" href="">太阳</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-grizzlies" href="">灰熊</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-pelicans" href="">鹈鹕</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-mavericks" href="">小牛</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-rockets" href="">火箭</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-spurs" href="">马刺</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-jazz" href="">爵士</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-nuggets" href="">掘金</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-thunder" href="">雷霆</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-timber_wolves" href="">森林狼</a>
+		            </li>
+		            <li>
+		                <a target="_blank" class="big-trail_blazers" href="">开拓者</a>
+		            </li>
+        		</ul>
+			</div>
+		</div>
+	</div>
+
+</div><!-- page-->
+<script src = "__JS__/App/index.js?<?php echo C('VERSION_JSCSS')?>"></script>
+<include file="Public:footer" />

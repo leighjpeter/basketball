@@ -1,0 +1,51 @@
+<include file="Public:header" />
+<body>
+<div data-role="page">  
+       <!-- 头部 -->  
+       <div data-role="header" data-position="inline" data-theme="b">  
+           <a href="index.html" data-icon="delete">Cancel</a>
+           <h3>Ajax测试</h3>
+           <a href="index.html" data-icon="check">Save</a> 
+       </div>  
+       <!-- 内容 -->  
+       <div data-role="content">               
+           <input type="button" value="显示ajax加载器" data-theme="b" onclick="showLoader()"/>  
+		   <input type="button" value="隐藏ajax加载器" data-theme="a" onclick="hideLoader()"/> 
+       </div>
+        <ul data-role="listview" data-inset="true" data-filter="true">
+			<li>'URL'  			=>      __URL__ 				</li> 
+			<li>'PUBLIC'		=>		__PUBLIC__  			</li>	
+			<li>'ROOT'			=>		__ROOT__				</li>	
+			<li>'Js'			=>		"<{$Think.config.Js}>"	</li>	
+			<li>'SELF'			=>		__SELF__				</li>	
+			<li>'APP'			=>  	__APP__					</li>	
+			<li>'ACTION'		=>		__ACTION__				</li>	
+			<li>'DOCUMENT'		=>		__DOCUMENT__			</li>	
+			<li>'RESOURCES'		=>		__RESOURCES__			</li>	
+		</ul>
+		
+		<div>
+			<a href="page-transitions-dialog.html" data-role="button" data-rel="dialog" data-transition="flow" data-inline="true">flow</a>
+		</div>
+		<div data-role="footer">
+		 <h4>End Page</h4> 
+		</div>
+</div>  
+<script>
+function showLoader() {  
+    $.mobile.loading('show', {  
+        text: '加载中...', //加载器中显示的文字  
+        textVisible: true, //是否显示文字  
+        theme: 'e',        //加载器主题样式a-e  
+        textonly: false,   //是否只显示文字  
+        html: ""           //要显示的html内容，如图片等  
+    });  
+}  
+  
+function hideLoader()  
+{  
+    //隐藏加载器  
+    $.mobile.loading('hide');  
+}  
+</script>
+<include file="Public:footer" />

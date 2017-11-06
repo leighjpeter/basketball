@@ -1,0 +1,135 @@
+<include file="Public:header" />
+<link rel="stylesheet" href="__CSS__/fcowner.css?">
+<!-- <link rel="stylesheet" href="<{$Think.config.font}>/css/font-awesome.min.css"> -->
+<body>
+<div data-role="page" id="home" data-theme="b">
+
+<div data-role="panel" id="mypanel" data-position="right" data-display="overlay" data-swipe-close="true" data-animate="false" class="ui-panel-dismiss-open"> 
+    <!-- panel content goes here -->
+    	<div class="panel-top">
+            <div class="panel-top-header">
+	            <!-- <img class="Ind-circle" src="{$data['headerurl']}"/> -->
+	            <img class="Ind-circle" src="__IMG__/Weixin/default.jpg" />
+            </div>
+            <div class="panel-center-top-tel">                
+                <span class="panel-content" id = "carowner"></span>
+                <span class="panel-content" id = "phone"></span>
+                <a href="#" id="aphone"><img src="__IMG__/Weixin/Ind-center_02.png" id="makecall"/></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+</div><!-- /panel -->
+
+<div data-role="content" style="margin-top:100px"> 
+
+	<fieldset data-role="controlgroup">
+		<select id="area" data-native-menu="false" >
+			<volist name="area" id="vo">
+		        <option value="<{$vo.areaid}>"><{$vo.name}></option>
+			</volist>	        
+	    </select>
+	</fieldset>
+
+	<input style="IME-MODE: disabled;text-align:center;" type="text" data-clear-btn="true" name="platenum" id="platenum" placeholder="     Plate Number" maxlength="5" value="" >
+<!--     <div id="platelist" style="display:none"> -->
+        <ul id="suggestions" data-role="listview" data-inset="true"></ul>
+<!-- 	</div> -->
+    <div id="platejudge" class="havenumber"></div>
+	<a href="#" class="ui-shadow ui-btn ui-corner-all " id="search" >Search</a>
+
+</div>
+ 
+</div><!-- /page -->
+
+<script type="text/javascript">
+    $(document).ready(function(){        
+        $("#platenum").keyup(function(event){
+            var text = $(this).val();
+            var sugList = $("#suggestions");
+            if(event.keyCode == 13 || text.length < 2){
+                 //过滤回车
+                sugList.html("");
+                sugList.listview("refresh");
+                return false;
+            }
+            var curplatenum = $("#area option:selected").text()+$(this).val();
+            last  = event.timeStamp;        
+            setTimeout(function() {
+                 if(last - event.timeStamp  == 0) {          
+                     $.post('__URL__/findplatenum/',{'platenum':curplatenum},function(res){
+                        var str = "";
+                        for (var i = 0 ; i < res.length; i++) {
+                            str += "<li>"+res[i].platenum+"</li>";
+                            sugList.html(str);
+                            sugList.listview("refresh");
+                        };                        
+                     },'json');
+                 }
+             }, 500);
+        });
+    })
+
+	$("#platenum").focus(function(){
+		$('#platejudge').html('');
+		$('#platejudge').removeClass('nonumber').addClass('havenumber');
+	});
+	$("#search").click(function(){
+		var area = $("#area option:selected").text();
+		var _this = $("#platenum").val();
+		if(!_this){
+			$('#platejudge').html('请输入车牌号码');
+			$('#platejudge').removeClass('havenumber').addClass('nonumber');
+			return false;
+		}
+		if(!_this.match(/[A-Za-z0-9]{5}/)){
+			$('#platejudge').html('请输入正确车牌号码');
+			$('#platejudge').removeClass('havenumber').addClass('nonumber');
+			return false;
+		}
+		var search = $(this);
+		if(search.hasClass("dianji")){
+            return;
+        }
+        search.addClass("dianji");
+        $("#carowner").html('');
+        $("#phone").html('');
+		$.ajax({
+			url:'__URL__/search/',
+            dataType:"json",
+            timeout: 10000,
+            async:true,
+            data:{'area':area,'num':_this},
+            type:"POST",
+            beforeSend:function(){          
+            },
+            success:function(res){
+            	if(res.status == 1){
+            		var obj = res.content;
+            		$("#makecall").css("display","inline");
+            		$("#carowner").html(obj.carowner);
+	            	$("#phone").html(obj.phone);
+	            	$("#aphone").attr("href","tel:"+obj.phone);
+	            	$( "#mypanel" ).trigger( "updatelayout" );
+	            	$( "#mypanel" ).panel('open');
+            	}else{
+            		var obj = res.content;
+            		$("#makecall").css("display","none");
+            		$("#carowner").html(obj);
+	            	$( "#mypanel" ).trigger( "updatelayout" );
+	            	$( "#mypanel" ).panel('open');
+            	}            	
+            },
+            complete:function(){    
+                search.removeClass("dianji");
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                console.log(XMLHttpRequest);
+                console.log(textStatus);
+                console.log(errorThrown);
+                search.removeClass("dianji");
+                return false;
+            }
+		})
+	})
+</script>
+<include file="Public:footer" />

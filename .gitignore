@@ -1,0 +1,9 @@
+.buildpath
+.htaccess
+.project
+index.php
+/.settings/
+/Application/Runtime/
+/Public/Js/defined.js
+/Application/Common/Conf/
+/Application/Weixin/Conf/

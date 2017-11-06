@@ -1,0 +1,127 @@
+<include file="Public:header" />
+<style type="text/css">
+	.controlgroup-textinput{
+		padding-top: .22em;
+		padding-bottom: .22em;
+		width: 59%;
+	}
+	label.error {
+		color: red;
+		font-size: 16px;
+		font-weight: normal;
+		line-height: 1.4;
+		margin-top: 0.5em;
+		width: 100%;
+		float: none;
+	}
+	@media screen and (orientation: portrait) {
+		label.error {
+			margin-left: 0;
+			display: block;
+		}
+	}
+	@media screen and (orientation: landscape) {
+		label.error {
+			display: inline-block;
+			margin-left: 22%;
+		}
+	}
+	em {
+		color: red;
+		font-weight: bold;
+		padding-right: .25em;
+	}
+	.icon-yes{  
+		width: 40px;
+		height: 40px;
+		margin-top: -46px;
+		margin-right: 3px;
+		background-image: url(../../Public/App/images/icon04.png);
+		background-repeat: no-repeat;
+		background-position: center right;
+		background-size: 30px 30px;
+		}
+	.fl-r{float: right;}
+</style>
+
+<script type="text/javascript">
+$( document ).on( "click", ".show-page-loading-msg", function() {
+    var $this = $( this ),
+        theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        textonly = !!$this.jqmData( "textonly" );
+        html = $this.jqmData( "html" ) || "";
+    $.mobile.loading( "show", {
+            text: msgText,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+            html: html
+    });
+})
+</script>
+
+<body>
+<div data-role="page" id="home">
+	<div data-role="header">
+		<h3>添加信息</h3>
+	</div>
+
+	<div data-role="main" class="ui-content">
+	<form method="post" action="" id="commentForm">
+		<label for="name">Name : <span>*</span></label>
+		<input type="text" name="username" id="username" placeholder="Name" required minlength="3" maxlength="5" />
+		<!-- <span class="icon-yes fl-r" style="display:none"></span> 
+		<em>
+			<label class="field_notice"></label>
+			<label id="checking" class="checking"></label>
+		</em>
+		-->
+		<fieldset data-role="controlgroup" data-type="horizontal">
+		<legend for="platenum">Plate Num : <span>*</span></legend>
+		<select id="select-scenari" >
+			<volist name="area" id="vo">
+	       		<option value="<{$vo.areaid}>"><{$vo.name}></option>	      
+	       	</volist>
+   		</select>
+   		<input type="text" id="platenum" name="platenum" placeholder="Plate Num" data-wrapper-class="controlgroup-textinput ui-btn" maxlength="5" />
+   		<!-- <em><label class="field_notice"></label></em> -->
+		</fieldset>
+
+		<label for="info">Phone : <span>*</span></label>
+		<input type="tel" name="tel" id="tel" placeholder="Phone" maxlength="11" >
+		<!-- <span class="icon-yes fl-r" style="display:none"></span>
+		<em><label class="field_notice"></label></em>
+ -->
+		<input class ="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" type="button" data-inline="true" id="sub" value="Submit" data-theme="c">
+	</form>
+	</div>
+
+	<div data-role="popup" id="TipPopup" class="ui-content ui-popup ui-overlay-shadow ui-corner-all ui-body-c" data-overlay-theme="a"  data-dismissible="false" >
+		<a href="__URL__" data-rel="" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		<span id="msg">添加成功</span>	
+	</div><!-- popup -->
+</div>
+<script type="text/javascript">	
+$().ready(function() {
+	var validator = $( "#commentForm" ).validate({
+		rules: {
+			tel: {
+				required: true
+			},
+			platenum: {
+				required: true
+			},
+			username:{
+				required: true,
+				minlength: '(must be at least  3  characters)'
+			}
+		},
+		errorPlacement: function( error, element ) {
+			error.insertAfter( element.parent() );
+		}
+	});
+});
+</script>
+<include file="Public:footer" /> 
